@@ -1,0 +1,104 @@
+﻿@page
+@model practicasASPNET.Pages.IMCModel
+@{
+}
+<div class="row">
+    <div class="col-lg-7 mx-auto rounded border p-3">
+        <h2 class="text-center mb-5">Indice de Masa Corporal IMC</h2>
+
+        @if (Model.error.Length > 0)
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>@Model.error</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <form method="post">
+
+            <!--Div para peso-->
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Ingrese su Peso: </label>
+                <div class="col-sm-6">
+                    <input class="form-control" asp-for="Peso" />
+                    <span asp-validation-for="Peso" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!--Div para altura-->
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Ingrese su Altura: </label>
+                <div class="col-sm-6">
+                    <input class="form-control" asp-for="Altura" />
+                    <span asp-validation-for="Altura" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+
+            <!--Div para boton-->
+            <div class="row">
+                <div class="offset-sm-4 col-sm-8">
+                    <button type="submit" class="btn btn-primary">Calcular</button>
+                </div>
+            </div>
+        </form>
+
+        <br />
+        <br />
+
+        <!--Div para Resultados-->
+        @{
+            double imc = Model.imc;
+            var img = "";
+            var mensaje = "";
+        }
+
+        @switch(imc)
+        {
+            case < 18:
+                img = "img/peso_bajo.jpg";
+                mensaje = "Peso Bajo. Necesitas comer más y hacer ejercicio.";
+                break;
+
+            case < 25:
+                img = "img/peso_bien.gif";
+                mensaje = "Peso Normal. Sigue así, alimentate bien ;).";
+                break;
+
+            case < 27:
+                img = "img/sobre_peso.gif";
+                mensaje = "Sobre peso. Intenta bajar de peso. Come más frutas y verduras.";
+                break;
+
+            case < 30:
+                img = "img/obesidad1.jpg";
+                mensaje = "Obesidad grado I. Debes estar pendiente de tu salud. Come frutas y verduras ejercitate";
+                break;
+
+            case < 40:
+                img = "img/obesidad2.jpg";
+                mensaje = "Obesidad grado II. Debes estar pendiente de tu salud. Come frutas y verduras ejercitate.";
+                break;
+
+            case >= 30:
+                img = "img/obesidad3.jpg";
+                mensaje = "Obesidad grado III. Estas en peligro de salud, consulta a un médico especialista :c";
+                break;
+        }
+
+        @if(imc != 0)
+        {
+            <div class="row">
+                <center>
+                    <img src="@img" width="20%">
+                    <br />
+                    <p>IMC = @imc</p>
+                    <strong>
+                        @mensaje
+                    </strong>
+                </center>
+            </div>
+        }
+    </div>
+</div>

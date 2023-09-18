@@ -1,0 +1,44 @@
+﻿@page
+@model practicasASPNET.Pages.Programa4Model
+@{
+}
+<div class="row">
+    <div class="col-lg-7 mx-auto rounded border p-3">
+        <h2 class="text-center mb-5">Numeros pseudoaleatorios</h2>
+        <br />
+
+        <form method="post">
+            <!--Objetivo-->
+            <div class="row mb-3">
+                <strong>Objetivo: </strong>
+                El objetivo es hacer un arreglo con 20 número 
+                pseudoaleatorios entr 1 a 100. De este arreglo calcular: Promedio;
+                Mediana; Moda; Sumatoria de los números
+            </div>
+
+            <br />
+
+            <!--Div para boton-->
+            <div class="row">
+                <center>
+                    <button type="submit" class="btn btn-primary">Calcular</button>
+                </center>
+            </div>
+        </form>
+
+        <br />
+        <br />
+
+        <!--Resultados-->
+        @if(Model.sum != 0){
+            <div class="row mb-3">
+                <p>Lista de números desorden: @Model.res</p>
+                <p>Lista Ordenada: @Model.or</p>
+                <p>Promedio: @Model.prom</p>
+                <p>Media: @Model.media</p>
+                <p>Moda: @Model.moda</p>
+                <p>Sumatoria: @Model.sum</p>
+            </div>
+        }
+    </div>
+</div>
